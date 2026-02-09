@@ -25,6 +25,17 @@ public class ballMovement : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D collision)
     {
+        ICollidable collidable = collision.gameObject.GetComponent<ICollidable>();
+        if (collidable != null)
+        {
+            collidable.OnHit(collision);
+        }
+        
+        OnHit(collision);
+    }
+
+    public void OnHit(Collision2D collision)
+    {
         if (collision.gameObject.name == "top" || collision.gameObject.name == "bottom")
         {
             direction = new Vector2(direction.x, -direction.y);

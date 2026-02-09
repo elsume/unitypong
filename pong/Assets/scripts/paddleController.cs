@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class paddleController : MonoBehaviour
+public abstract class paddleController : MonoBehaviour, ICollidable
 {
     protected float speed = 8f;
     protected Rigidbody2D rb;
@@ -19,8 +19,11 @@ public class paddleController : MonoBehaviour
         rb.velocity = new Vector2(0, input * speed);
     }
 
-    protected virtual string GetInputAxisName()
+    protected abstract string GetInputAxisName();
+
+    public void OnHit(Collision2D collision)
     {
-        return "";
+        Debug.Log(gameObject.name + " was hit by Ball");
     }
+    
 }
