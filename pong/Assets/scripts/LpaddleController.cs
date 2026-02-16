@@ -6,6 +6,8 @@ public class LpaddleController : paddleController
 {
     protected override string GetInputAxisName()
     {
-        return "paddleL";
+        if (!IsSpawned) return "paddleL";
+        
+        return (OwnerClientId == 0) ? "paddleL" : "paddleR";
     }
 }
